@@ -1,0 +1,6 @@
+/*
+This file contains the userID and SEssionID and the Timestamp of that session
+
+timestamp can be default generated while inserting a record into the table
+
+*/

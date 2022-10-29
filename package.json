@@ -1,0 +1,24 @@
+{
+    "name": "financeanalysis",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "server": "nodemon index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "package.json": "^0.0.0",
+        "pg": "^8.8.0",
+        "postgres": "^3.3.1",
+        "sequelize": "^6.25.3"
+    },
+    "devDependencies": {
+        "concurrently": "^7.5.0",
+        "nodemon": "^2.0.20"
+    }
+}

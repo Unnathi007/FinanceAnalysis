@@ -1,0 +1,3 @@
+/*
+All the realtions between tables has to be declared and defined in this file
+*/
