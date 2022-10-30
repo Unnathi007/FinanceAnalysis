@@ -1,8 +1,9 @@
 const Sequelize = require("sequelize")
-sequelize = require("../utils/db_connection")
-const {schema}=require("../utils/config");
+const { schema } = require("../utils/config")
+const sequelize = require("../utils/db_connection")
+
 const user_profile = sequelize.define(
-  "user_profile",
+  "users_profile",
   {
     user_id: {
       type: Sequelize.STRING,
@@ -14,7 +15,7 @@ const user_profile = sequelize.define(
           msg: `UserID must be unique and is 5 to 10 characters`,
         },
         notNull: { args: true, msg: `userID cannot be empty` },
-      }
+      },
     },
     email: {
       type: Sequelize.STRING,
@@ -25,15 +26,17 @@ const user_profile = sequelize.define(
       },
     },
     phone: {
-      type: Sequelize.NUMBER,
+      type: Sequelize.STRING,
       allowNull: false,
       unique: true,
     },
     first_name: {
       type: Sequelize.STRING,
+      allowNull: false,
     },
     last_name: {
       type: Sequelize.STRING,
+      allowNull: false,
     },
     role_id: {
       type: Sequelize.STRING,
@@ -51,4 +54,6 @@ const user_profile = sequelize.define(
   }
 )
 
-module.exports = { sequelize, user_profile }
+module.exports = user_profile
+
+// sequelize.sync()-

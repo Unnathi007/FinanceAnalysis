@@ -2,21 +2,15 @@
 This table contains SessionID, Amount, TxnType, Category
 */
 const Sequelize = require("sequelize")
-sequelize = require("../utils/db_connection")
-const {schema}=require("../utils/config");
+const sequelize = require("../utils/db_connection")
+const { schema } = require("../utils/config")
 const user_activity = sequelize.define(
   "user_activity",
   {
     session_id: {
       type: Sequelize.STRING,
       allowNull: false,
-      references:{
-      model: 'sessions', //  refers to table name
-      key: 'session_id' // 'id' refers to column name in fathers table
-   }
-      
-    }
-    ,
+    },
     Amount: {
       type: Sequelize.INTEGER,
       allowNull: false,
@@ -26,12 +20,12 @@ const user_activity = sequelize.define(
     },
     TxnType: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
     },
     Category: {
       type: Sequelize.STRING,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     schema: `${schema}`,
@@ -39,4 +33,5 @@ const user_activity = sequelize.define(
   }
 )
 
-module.exports = { sequelize, user_activity }
+module.exports = user_activity
+// sequelize.sync()
