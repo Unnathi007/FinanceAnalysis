@@ -1,6 +1,4 @@
-const dotenv = require("dotenv")
-const { Model } = require("sequelize")
-const result = dotenv.config()
+require("dotenv").config({ path: __dirname + "/./../.env" })
 
 // if (result.error) {
 //   throw result.error
@@ -13,5 +11,6 @@ module.exports = {
   database: process.env.DATABASE,
   app_port: process.env.SERVER_PORT,
   host: process.env.HOST,
+  schema: process.env.schema,
 }
 console.log(module.exports)
