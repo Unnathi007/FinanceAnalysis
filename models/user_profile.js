@@ -14,7 +14,7 @@ const user_profile = sequelize.define(
           msg: `UserID must be unique and is 5 to 10 characters`,
         },
         notNull: { args: true, msg: `userID cannot be empty` },
-      },
+      }
     },
     email: {
       type: Sequelize.STRING,

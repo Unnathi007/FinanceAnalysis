@@ -7,7 +7,10 @@ const credentials = sequelize.define(
     user_id: {
       type: Sequelize.STRING,
       allowNull: false,
-      primaryKey: true,
+      references: {
+        model: 'user_profile', //  refers to table name
+        key: 'user_id' // 'id' refers to column name in fathers table
+     }
     },
     PassHash: {
       type: Sequelize.STRING,
@@ -15,7 +18,9 @@ const credentials = sequelize.define(
     },
   },
   {
-    schema: Schema,
+
+    schema: `${Schema}`,
+
     timestamps: false,
   }
 )

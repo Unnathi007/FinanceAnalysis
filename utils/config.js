@@ -1,6 +1,4 @@
-const dotenv = require("dotenv")
-const { Model } = require("sequelize")
-const result = dotenv.config()
+require("dotenv").config({ path: __dirname + "/./../.env" })
 
 // if (result.error) {
 //   throw result.error
