@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize")
 sequelize = require("../utils/db_connection")
-
+const {schema}=require("../utils/config");
 const user_profile = sequelize.define(
   "user_profile",
   {
@@ -14,7 +14,7 @@ const user_profile = sequelize.define(
           msg: `UserID must be unique and is 5 to 10 characters`,
         },
         notNull: { args: true, msg: `userID cannot be empty` },
-      },
+      }
     },
     email: {
       type: Sequelize.STRING,
@@ -46,7 +46,7 @@ const user_profile = sequelize.define(
     },
   },
   {
-    schema: "finance",
+    schema: `${schema}`,
     timestamps: false,
   }
 )

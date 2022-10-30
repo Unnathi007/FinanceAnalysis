@@ -15,7 +15,7 @@ sequelize.sync().then(() => {
       console.log("user_profile already Existed !!!")
     })
     .finally(() => {
-      sequelize.close()
+      //sequelize.close()
       console.log(`sequelize closed successfully`)
     })
 })

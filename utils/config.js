@@ -11,6 +11,6 @@ module.exports = {
   database: process.env.DATABASE,
   app_port: process.env.SERVER_PORT,
   host: process.env.HOST,
-  schema: process.env.schema,
+  schema:process.env.SCHEMA
 }
 console.log(module.exports)
