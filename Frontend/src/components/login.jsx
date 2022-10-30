@@ -13,12 +13,17 @@ import {
 import { useNavigate } from "react-router-dom";
 import { GoogleLoginButton } from "react-social-login-buttons";
 import img from '../assets/images/img2.jpg'
+import NavBar from "./navbar";
+import Footer from "./footer";
+
 function LoginPage() {
   let navigate = useNavigate();
-  return (
+  return (<>
+    <NavBar/>
     <div className="background">
       <div className="login-box">
         <div className="container">
+          
           <div class="row app-des">
             <div class="col left-background ">
               <h2>Expense Analysis</h2>
@@ -59,7 +64,10 @@ function LoginPage() {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
+    
+    </>
   );
 }
 

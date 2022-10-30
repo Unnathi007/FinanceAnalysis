@@ -1,5 +1,6 @@
 import React from "react";
 import "../assets/styles/login.css";
+import NavBar from "./navbar";
 
 import {
   Button,
@@ -13,9 +14,11 @@ import {
 import { useNavigate } from "react-router-dom";
 import { GoogleLoginButton } from "react-social-login-buttons";
 import img from '../assets/images/8432.jpg'
+import Footer from "./footer";
 function RegisterPage() {
   let navigate = useNavigate();
-  return (
+  return (<>
+    <NavBar/>
     <div className="background">
       <div className="login-box">
         <div className="container">
@@ -77,7 +80,9 @@ function RegisterPage() {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
+    </>
   );
 }
 
