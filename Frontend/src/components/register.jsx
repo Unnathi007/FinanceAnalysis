@@ -1,5 +1,5 @@
 import React from "react";
-import "../assets/styles/login.css";
+import "../assets/styles/register.css";
 import NavBar from "./navbar";
 
 import {
@@ -80,8 +80,9 @@ function RegisterPage() {
           </div>
         </div>
       </div>
-      <Footer/>
+      
     </div>
+    <Footer/>
     </>
   );
 }

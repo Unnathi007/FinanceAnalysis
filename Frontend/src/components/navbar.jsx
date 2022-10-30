@@ -2,6 +2,7 @@ import React from 'react';
 import icon from '../assets/images/icon.png'
 import profileUser from '../assets/images/profile-user.png'
 import "../assets/styles/navbar.css";
+import "../assets/styles/navbar.css";
 
 export default function NavBar(){
     return (
@@ -26,14 +27,27 @@ export default function NavBar(){
         <li class="nav-item">
           <a class="nav-link" href="#">Analysis</a>
         </li>
-      </ul>
-      <span class="navbar-text">
-      <img src={profileUser} alt="Logo" width="30" height="24" class="d-inline-block align-text-top" />
-      
-      </span>
-    </div>
-  </div>
-</nav>
         
+      </ul>
+      <ul class="navbar-nav  mb-2 mb-lg-0">
+      <li class="nav-item dropdown ms-auto">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src={profileUser} alt="Logo" width="30" height="24" class="d-inline-block align-text-top" />
+      
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      
+    </div>
+    
+
+    </div>
+</nav>  
+
     )
 }

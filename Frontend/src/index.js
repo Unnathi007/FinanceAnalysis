@@ -5,6 +5,7 @@ import LoginPage from './components/login.jsx';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css'
 import App from './app';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 
 ReactDOM.render(
