@@ -2,7 +2,7 @@ const Sequelize = require("sequelize")
 sequelize = require("../utils/db_connection")
 const {schema}=require("../utils/config");
 const user_profile = sequelize.define(
-  "user_profile",
+  "user_acivity",
   {
     user_id: {
       type: Sequelize.STRING,
@@ -25,7 +25,7 @@ const user_profile = sequelize.define(
       },
     },
     phone: {
-      type: Sequelize.NUMBER,
+      type: Sequelize.STRING,
       allowNull: false,
       unique: true,
     },
