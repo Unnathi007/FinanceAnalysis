@@ -17,7 +17,7 @@ create_cred = async (user) => {
 check_cred = async (user) => {
   return credentials.findOne({
     where: {
-    user_id: `${user}`,
+      user_id: `${user}`,
     },
   })
 }
