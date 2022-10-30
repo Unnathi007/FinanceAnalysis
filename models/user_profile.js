@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize")
 sequelize = require("../utils/db_connection")
-
+const {schema}=require("../utils/config");
 const user_profile = sequelize.define(
   "user_profile",
   {
@@ -46,7 +46,7 @@ const user_profile = sequelize.define(
     },
   },
   {
-    schema: "finance",
+    schema: `${schema}`,
     timestamps: false,
   }
 )

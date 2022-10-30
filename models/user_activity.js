@@ -3,7 +3,7 @@ This table contains SessionID, Amount, TxnType, Category
 */
 const Sequelize = require("sequelize")
 sequelize = require("../utils/db_connection")
-
+const {schema}=require("../utils/config");
 const user_activity = sequelize.define(
   "user_activity",
   {
@@ -34,7 +34,7 @@ const user_activity = sequelize.define(
     }
   },
   {
-    schema: "finance",
+    schema: `${schema}`,
     timestamps: false,
   }
 )

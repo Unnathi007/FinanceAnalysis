@@ -6,7 +6,7 @@ timestamp can be default generated while inserting a record into the table
 */
 const Sequelize = require("sequelize")
 sequelize = require("../utils/db_connection")
-
+const {schema}=require("../utils/config");
 const sessions = sequelize.define(
   "sessions",
   {
@@ -31,13 +31,13 @@ const sessions = sequelize.define(
           notNull: { args: true, msg: `userID cannot be empty` },
         },
     },
-    session_timestamp: {
+    sessoion_timestamp: {  // correct it
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn("NOW"),
       }
   },
   {
-    schema: "finance",
+    schema: `${schema}`,
     timestamps: false,
   }
 )
