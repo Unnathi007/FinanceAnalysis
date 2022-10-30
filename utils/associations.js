@@ -1,13 +1,21 @@
 /*
 All the realtions between tables has to be declared and defined in this file
 */
-
+const Sequelize=require("sequelize");
+const sequelize = require("../utils/db_connection");
+const db={};
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+db.user_profile = require("../models/user_profile")(sequelize, Sequelize);
+db.credentials = require("./models/credentials")(sequelize, Sequelize);
+db.user_activity = require("../models/user_activity")(sequelize, Sequelize);
+db.sessions = require("./models/sessions")(sequelize, Sequelize);
 //user_profile --- {one-one}-----credentials
-user_profile.hasOne(credentials,{
+db.user_profile.hasOne(credentials,{
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE'
 });
-credentials.belongsTo(user_profile, {
+db.credentials.belongsTo(user_profile, {
     foreignKey:{
         name:'user_id',
         allowNull: false
@@ -15,11 +23,11 @@ credentials.belongsTo(user_profile, {
 });
 
 //user_profile --- {many-one}-----sessions
-user_profile.hasMany(sessions,{
+db.user_profile.hasMany(sessions,{
     onDelete: 'RESTRICT',
     onUpdate: 'RESTRICT'
 });
-sessions.belongsTo(user_profile,{
+db.sessions.belongsTo(user_profile,{
     foreignKey:{
         name:'user_id',
         allowNull: false
@@ -27,18 +35,18 @@ sessions.belongsTo(user_profile,{
 });
 
 //sessions --- {one-one}-----user_activity
-sessions.hasOne(user_activity,{
+db.sessions.hasOne(user_activity,{
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE'
 });
-user_activity.belongsTo(sessions,{
+db.user_activity.belongsTo(sessions,{
     foreignKey:{
         name:'session_id',
         allowNull: false
     }
 });
 
-
+module.exports=db;
 
 
   
