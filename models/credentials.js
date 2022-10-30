@@ -1,6 +1,8 @@
 const Sequelize = require("sequelize")
 sequelize = require("../utils/db_connection")
-const {schema}=require("../utils/config");
+
+const { schema } = require("../utils/config")
+
 const credentials = sequelize.define(
   "credentials",
   {
@@ -18,9 +20,7 @@ const credentials = sequelize.define(
     },
   },
   {
-
     schema: `${schema}`,
-
     timestamps: false,
   }
 )
