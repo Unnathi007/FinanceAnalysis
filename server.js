@@ -11,7 +11,7 @@ const initOptions = {
     //         client.query(`SET search_path TO ${schema}`);
     //     }
     // }
-    schema:'fa'
+    schema:['public','fa']
 };
 
 const pgp = require('pg-promise')(initOptions);
@@ -29,26 +29,52 @@ const cn = {
 // "types" - in case you want to set custom type parsers on the pool level
 //const pgp = require('pg-promise')();
 const db = pgp(cn);
-db.connect();
-app.get('/',(req,res)=>{
+//db.connect();
+app.get('/',async (req,res)=>{
     var sol;
-    db.any('SELECT * FROM users_info')
+    await db.any('SELECT * FROM users_info')
     .then(function(data) {
         // success;
+        console.log(typeof(data));
+        sol=data;
+    })
+    .catch(function(error) {
+       console.log("error"); // error;
+       
+    });
+//     console.log(sol.rows);
+//     return res
+//   .status(200)
+//   .send(sol.rows);
+//     res.send(sol);
+//     res.send('Hello Unnathi');
+res.send(sol);
+})
+
+
+
+app.get('/values',async (req,res)=>{
+    var sol;
+    await db.any('SELECT * FROM users_info')
+    .then(function(data) {
+        // success;
+        console.log(data);
         sol=data;
     })
     .catch(function(error) {
        console.log("error"); // error;
     });
-    console.log(sol.rows);
+    console.log(sol);
     res.send(sol);
-    res.send('Hello Unnathi');
 })
-app.get('/values',(req,res)=>{
+
+
+app.get('/password',async (req,res)=>{
     var sol;
-    db.any('SELECT * FROM user_info')
+    await db.any('SELECT * FROM credentials')
     .then(function(data) {
         // success;
+        console.log(data);
         sol=data;
     })
     .catch(function(error) {
