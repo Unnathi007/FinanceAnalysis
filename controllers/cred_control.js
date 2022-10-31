@@ -1,46 +1,56 @@
 const sequelize = require("../utils/db_connection")
 const credentials = require("./../models/credentials")
-const db = require("../utils/associations")
 
-var cred_check = async (user) => {
-  console.log(user)
-  return db.credentials.findOne({
+
+// Retreive PassHash using user_id
+
+const cred_check = async (user) => {
+  return credentials.findOne({
     where: {
       user_id: user,
     },
   })
 }
 
-var cred = cred_check("ark123")
 
-cred
-  .then((res) => {
-    console.log("success output")
-    console.log(JSON.stringify(res))
+/*********************** */
+
+// Insert record user_id, PassHash
+
+const cred_insert = (user, pass) => {
+  //console.log(user, pass)
+  return credentials.create({
+    user_id: user,
+    PassHash: pass,
   })
-  .catch((err) => {
-    console.log(err.message)
+}
+
+/***************************** */
+
+// Delete record using user_id
+
+const cred_delete = (user) => {
+  return credentials.destroy({
+    where: {
+      user_id: user,
+    },
   })
 
+}
 
-var credUserAdd = async (user) => {
-    return db.credentials.create({
-      user_id:user.user_id,
-      PassHash:user.passHash
-    })
-  }
-const user={
-      user_id:"abhigna123",
-      passHash:"sdfghjk"
-  }
-credUserAdd(user)
-    .then((res) => {
-      console.log(JSON.stringify(res))
-    })
-    .catch((err) => {
-      console.log("hi " + err.message)
-    })
-sequelize.sync()
-// console.log(db.credentials.rawAttributes)
+/****************************** */
+//Update record using user_id,pass
+// in credentials table only.
 
-// add foreign key 
+const cred_update = (user, pass) => {
+  return credentials.update(
+    {
+      PassHash: pass,
+    },
+    { where: { user_id: user } }
+  )
+}
+
+module.exports = { cred_check, cred_insert, cred_update, cred_delete }
+
+//sequelize.sync()
