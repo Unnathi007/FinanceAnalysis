@@ -4,15 +4,12 @@ import NavBar from "./navbar";
 
 import {
   Button,
-  Form,
   FormGroup,
   Label,
   Input,
-  Card,
   CardImg
 } from "reactstrap";
 import { useNavigate } from "react-router-dom";
-import { GoogleLoginButton } from "react-social-login-buttons";
 import img from '../assets/images/8432.jpg';
 import Footer from "./footer";
 function RegisterPage() {

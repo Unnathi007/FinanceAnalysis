@@ -4,18 +4,11 @@ import NavBar from "./navbar";
 import Footer from "./footer";
 import Table from "react-bootstrap/Table";
 import "../assets/styles/user.css";
-import {
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Card,
-  CardImg,
-} from "reactstrap";
-import { useNavigate } from "react-router-dom";
-import { GoogleLoginButton } from "react-social-login-buttons";
-
+function calculateTotal(){
+  const list = document.getElementsByClassName("single-expense");
+  console.log(list);
+  return 1000;
+}
 function UserPage() {
   return (
     <React.Fragment>
@@ -38,61 +31,65 @@ function UserPage() {
                   <td>1</td>
                   <td>Mark</td>
                   <td>Otto</td>
-                  <td>@mdo</td>
+                  <td className="single-expense">1000</td>
                 </tr>
                 <tr>
                   <td>2</td>
                   <td>Jacob</td>
                   <td>Thornton</td>
-                  <td>@fat</td>
+                  <td className="single-expense">1000</td>
                 </tr>
                 <tr>
                   <td>3</td>
                   <td>Harry</td>
                   <td>Larry the Bird</td>
-                  <td>@twitter</td>
+                  <td className="single-expense">1000</td>
                 </tr>
                 <tr>
                   <td>1</td>
                   <td>Mark</td>
                   <td>Otto</td>
-                  <td>@mdo</td>
+                  <td className="single-expense">1000</td>
                 </tr>
                 <tr>
                   <td>1</td>
                   <td>Mark</td>
                   <td>Otto</td>
-                  <td>@mdo</td>
+                  <td className="single-expense">1000</td>
                 </tr>
                 <tr>
                   <td>1</td>
                   <td>Mark</td>
                   <td>Otto</td>
-                  <td>@mdo</td>
+                  <td className="single-expense">1000</td>
                 </tr>
                 <tr>
                   <td>1</td>
                   <td>Mark</td>
                   <td>Otto</td>
-                  <td>@mdo</td>
+                  <td className="single-expense">1000</td>
                 </tr>
                 <tr>
                   <td>1</td>
                   <td>Mark</td>
                   <td>Otto</td>
-                  <td>@mdo</td>
+                  <td className="single-expense">1000</td>
                 </tr>
                 <tr>
                   <td>1</td>
                   <td>Mark</td>
                   <td>Otto</td>
-                  <td>@mdo</td>
+                  <td className="single-expense">1000</td>
                 </tr>
                 <tr>
                   <td>1</td>
                   <td>Mark</td>
                   <td>Otto</td>
-                  <td>@mdo</td>
+                  <td className="single-expense">1000</td>
+                </tr>
+                <tr>
+                  <td colSpan={3} style={{textAlign : "right"}}>Total Expenses</td>
+                  <td>{calculateTotal}</td>
                 </tr>
               </tbody>
             </Table>
@@ -113,7 +110,7 @@ function UserPage() {
                   <td>1</td>
                   <td>Mark</td>
                   <td>Otto</td>
-                  <td>@mdo</td>
+                  <td>1000</td>
                 </tr>
                 <tr>
                   <td>2</td>
@@ -131,43 +128,43 @@ function UserPage() {
                   <td>1</td>
                   <td>Mark</td>
                   <td>Otto</td>
-                  <td>@mdo</td>
+                  <td>1000</td>
                 </tr>
                 <tr>
                   <td>1</td>
                   <td>Mark</td>
                   <td>Otto</td>
-                  <td>@mdo</td>
+                  <td>1000</td>
                 </tr>
                 <tr>
                   <td>1</td>
                   <td>Mark</td>
                   <td>Otto</td>
-                  <td>@mdo</td>
+                  <td>1000</td>
                 </tr>
                 <tr>
                   <td>1</td>
                   <td>Mark</td>
                   <td>Otto</td>
-                  <td>@mdo</td>
+                  <td>1000</td>
                 </tr>
                 <tr>
                   <td>1</td>
                   <td>Mark</td>
                   <td>Otto</td>
-                  <td>@mdo</td>
+                  <td>1000</td>
                 </tr>
                 <tr>
                   <td>1</td>
                   <td>Mark</td>
                   <td>Otto</td>
-                  <td>@mdo</td>
+                  <td>1000</td>
                 </tr>
                 <tr>
                   <td>1</td>
                   <td>Mark</td>
                   <td>Otto</td>
-                  <td>@mdo</td>
+                  <td>1000</td>
                 </tr>
               </tbody>
             </Table>
