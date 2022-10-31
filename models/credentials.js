@@ -27,4 +27,4 @@ const credentials = sequelize.define(
 
 module.exports = credentials
 
-// sequelize.sync()
+sequelize.sync()

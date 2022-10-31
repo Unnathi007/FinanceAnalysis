@@ -3,7 +3,9 @@ const { schema } = require("../utils/config")
 const sequelize = require("../utils/db_connection")
 
 const user_profile = sequelize.define(
+
   "users_profile",
+
   {
     user_id: {
       type: Sequelize.STRING,
@@ -56,4 +58,4 @@ const user_profile = sequelize.define(
 
 module.exports = user_profile
 
-// sequelize.sync()-
+sequelize.sync()

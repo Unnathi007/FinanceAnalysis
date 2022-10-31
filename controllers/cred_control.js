@@ -1,6 +1,7 @@
 const sequelize = require("../utils/db_connection")
 const credentials = require("./../models/credentials")
 
+
 // Retreive PassHash using user_id
 
 const cred_check = async (user) => {
@@ -10,6 +11,7 @@ const cred_check = async (user) => {
     },
   })
 }
+
 
 /*********************** */
 
@@ -33,6 +35,7 @@ const cred_delete = (user) => {
       user_id: user,
     },
   })
+
 }
 
 /****************************** */
