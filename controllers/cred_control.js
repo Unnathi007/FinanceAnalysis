@@ -36,7 +36,8 @@ const cred_delete = (user) => {
 }
 
 /****************************** */
-//Update record using user_id,pass in credentials table only.
+//Update record using user_id,pass
+// in credentials table only.
 
 const cred_update = (user, pass) => {
   return credentials.update(
