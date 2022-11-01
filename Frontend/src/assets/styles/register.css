@@ -1,4 +1,3 @@
-
 .login-form{
     width: 50vw;
     display: grid;
@@ -32,7 +31,7 @@
     background: linear-gradient(to right, #F5F7FA, #B8C6DB);
     /* background: linear-gradient(to right, #f2709c, #ff9472); */
     width: 100vw;
-    height: 130vh;
+    height: 100vh;
   }
   button.mt-3.mb-3.px-auto.text-center {
     font-weight: 500;
@@ -54,7 +53,6 @@
   }
   .mobile-img{
     display: grid;
-  
   }
   .left-background{
     background-color: #013142;

@@ -4,8 +4,8 @@ import './index.css';
 import LoginPage from './components/login.jsx';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap.min.js'
 import App from './app';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 
 ReactDOM.render(

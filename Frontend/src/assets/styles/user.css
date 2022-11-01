@@ -1,0 +1,29 @@
+.table-container {
+    position:relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex: 1;
+    padding: 50px;
+    padding-top: 60px !important;
+}
+
+.expenses{
+    flex:1;
+    padding: 20px;
+}
+
+.Incomes{
+    flex:1;
+    padding : 20px;
+}
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+}
+
+h1{
+    text-align: center;
+}
