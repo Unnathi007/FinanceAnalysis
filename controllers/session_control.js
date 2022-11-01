@@ -1,8 +1,8 @@
 const sequelize = require("../utils/db_connection")
-// const user_profile = require("../models/user_profile")
-const db=require("../utils/associations")
+const sessions = require("../models/sessions")
+// const db=require("../utils/associations")
 var addSession = async (session) => {
-  return db.sessions.create({
+  return sessions.create({
     user_id:session.user_id,
     session_id:session.session_id,
     session_timestamp:session.session_timestamp
@@ -20,5 +20,5 @@ addSession(session)
   .catch((err) => {
     console.log("hi " + err.message)
   })
-console.log(db.sessions.rawAttributes);
+// console.log(db.sessions.rawAttributes);
 sequelize.sync()

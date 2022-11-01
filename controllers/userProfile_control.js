@@ -1,8 +1,8 @@
 const sequelize = require("../utils/db_connection")
-const user_profile = require("../models/user_profile")
-const db=require("../utils/associations")
-var activity = async (user) => {
-  return db.users_profiles.create({
+const user_profile = require("./../models/user_profile")
+// const db=require("../utils/associations")
+const createUser = async (user) => {
+  return user_profile.create({
     user_id:user.user_id,
     email:user.email,
     phone:user.phone,
@@ -19,11 +19,20 @@ const user={
     last_name:"vuppala",
     signup_timestamp :"2020-06-22 19:10:25-07"
 }
-activity(user)
-  .then((res) => {
-    console.log(JSON.stringify(res))
-  })
-  .catch((err) => {
-    console.log("hi " + err.message)
-  })
+// const user1={
+//   user_id: 'desa41273',
+//   email: 'desani12374@gmail.com',
+//   phone: '1837787890',
+//   first_name: 'teja',
+//   last_name: 'desani',
+//   signup_timestamp :"2020-06-22 19:10:25-07"
+// }
+// createUser(user)
+//   .then((res) => {
+//     console.log(JSON.stringify(res))
+//   })
+//   .catch((err) => {
+//     console.log("hi " + err.message)
+//   })
 sequelize.sync()
+module.exports = {createUser}
