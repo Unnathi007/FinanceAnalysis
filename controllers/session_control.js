@@ -13,13 +13,30 @@ const session={
     session_id:"asdfghjk9876tfvbh",
     session_timestamp:"2022-10-25 19:10:25-07"
 }
-addSession(session)
-  .then((res) => {
-    console.log(JSON.stringify(res))
-  })
-  .catch((err) => {
-    console.log("hi " + err.message)
-  })
+// addSession(session)
+//   .then((res) => {
+//     console.log(JSON.stringify(res))
+//   })
+//   .catch((err) => {
+//     console.log("hi " + err.message)
+//   })
+var getSessions = async (user_id) => {
+    return sessions.findAll({
+      where: {
+        user_id:user_id
+      },
+      attributes: ["session_id"]
+    })
+}
+// let user_id="abhigna";
+// getSessions(user_id)
+//     .then((res) => {
+//       console.log(JSON.stringify(res))
+//     })
+//     .catch((err) => {
+//       console.log("hi " + err.message)
+// })
+
 // console.log(db.sessions.rawAttributes);
 sequelize.sync()
-module.exports = {addSession};
+module.exports = {addSession,getSessions};

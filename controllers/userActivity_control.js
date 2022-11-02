@@ -22,11 +22,27 @@ const activity={
     session_timestamp:'2022-10-25 19:10:25-07'
 }
 addActivity(activity)
-  .then(() => {
+  .then((res) => {
     console.log(JSON.stringify(res))
   })
   .catch((err) => {
     console.log("hi " + err.message)
   })
+var findActivities = async (sessionIds) => {
+    return user_activity.findAll({
+      where: {
+        session_id:[...sessionIds]
+      },
+    });
+}
+// let sessionIds=["5elZkUdQpf8i2YKQjyaDBXE9mi1XFsoe","BXlQSTU4GvYNTklVrJwvcnaD5Ozc4cgu","thgyhlolmyhnmvfd"];
+// findActivities(sessionIds)
+//   .then((res) => {
+//     console.log(JSON.stringify(res))
+//   })
+//   .catch((err) => {
+//     console.log("hi " + err.message)
+// })
+
 sequelize.sync()
-module.exports = {addActivity};
+module.exports = {addActivity,findActivities};

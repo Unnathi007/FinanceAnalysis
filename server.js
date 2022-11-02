@@ -1,5 +1,5 @@
-const {addSession} =require( "./controllers/session_control");
-const {addActivity} =require( "./controllers/userActivity_control");
+const {addSession,getSessions} =require( "./controllers/session_control");
+const {addActivity,findActivities} =require( "./controllers/userActivity_control");
 const {createUser} =require( "./controllers/userProfile_control");
 const {credUserAdd,cred_check} =require( "./controllers/cred_control");
 const express=require('express');
@@ -111,6 +111,27 @@ app.post('/login',(req,res)=>{
     res.sendStatus(502);
    }
 })
+app.get("/home", (req, res) => {
+  let user_id="abhigna";
+  let activities;
+  getSessions(user_id)
+  .then((result)=>{
+    console.log("Retrieved Sessions : ",result);
+    let sessions=result.map(session=>session.session_id);
+    findActivities(sessions).then((result)=>{
+        console.log("Activities Retrieved : ",result)
+        activities=result;
+       }).catch((err)=>{
+        console.log("Activities errorr : ",err.message)
+        res.sendStatus(502);
+       })
+   }).catch((err)=>{
+    console.log("Session errorr : ",err.message)
+    res.sendStatus(502);
+   })
+   console.log(JSON.stringify(activities));
+   res.status(200).json(activities);//JSON.stringify(activities));
+});
 app.listen(Port,()=>{
     console.log("Server is running on Port : ",Port);
 })
