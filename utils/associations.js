@@ -11,16 +11,16 @@ db.credentials = require("../models/credentials")
 db.user_activity = require("../models/user_activity")
 db.sessions = require("../models/sessions")
 //user_profile --- {one-one}-----credentials
-db.users_profiles.hasOne(db.credentials, {
-  onDelete: "CASCADE",
-  onUpdate: "CASCADE",
-})
-db.credentials.belongsTo(db.users_profiles, {
-  foreignKey: {
-    name: "user_id",
-    allowNull: false,
-  },
-})
+// db.users_profiles.hasOne(db.credentials, {
+//   onDelete: "CASCADE",
+//   onUpdate: "CASCADE",
+// })
+// db.credentials.belongsTo(db.users_profiles, {
+//   // foreignKey: {
+//   //   name: "user_id",
+//   //   allowNull: false,
+//   // },
+// })
 
 //user_profile --- {many-one}-----sessions
 db.users_profiles.hasMany(db.sessions, {
@@ -30,11 +30,11 @@ db.users_profiles.hasMany(db.sessions, {
 db.sessions.belongsTo(db.users_profiles, {
   foreignKey: {
     name: "user_id",
-    allowNull: false,
+    allowNull: false
   },
 })
 
-//sessions --- {one-one}-----user_activity
+//sessions --- {one-many}-----user_activity
 db.sessions.hasOne(db.user_activity, {
   onDelete: "CASCADE",
   onUpdate: "CASCADE",
@@ -47,4 +47,4 @@ db.user_activity.belongsTo(db.sessions, {
 })
 
 module.exports = db
-// sequelize.sync()
+sequelize.sync()

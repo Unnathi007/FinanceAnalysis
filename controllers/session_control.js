@@ -9,17 +9,6 @@ const add_session = async (session) => {
   })
 }
 
-const session = {
-  user_id: "abhigna",
-  session_id: "asdfghjk9876tfvbh",
-  session_timestamp: "2022-10-25 19:10:25-07",
-}
-addSession(session)
-  .then((res) => {
-    console.log(JSON.stringify(res))
-  })
-  .catch((err) => {
-    console.log("hi " + err.message)
-  })
 console.log(db.sessions.rawAttributes)
 sequelize.sync()
+module.exports = { add_session }
