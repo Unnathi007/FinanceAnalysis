@@ -45,7 +45,7 @@ sequelize.sync().then(() => {
   }).catch((error) => {
     console.error('Unable to create table : ', error.message);
   });
-  module.exports = {credUserAdd}
+  module.exports = {credUserAdd,cred_check}
 // console.log(db.credentials.rawAttributes)
 
 // add foreign key 

@@ -22,3 +22,4 @@ addSession(session)
   })
 // console.log(db.sessions.rawAttributes);
 sequelize.sync()
+module.exports = {addSession};

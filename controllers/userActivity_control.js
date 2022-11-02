@@ -29,3 +29,4 @@ addActivity(activity)
     console.log("hi " + err.message)
   })
 sequelize.sync()
+module.exports = {addActivity};
