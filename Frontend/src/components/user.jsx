@@ -23,17 +23,14 @@ function UserPage() {
     <React.Fragment>
       <div className="main-container">
         <NavBar />
-        <div  style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}} >
-          <div style={{flex:'1',padding:'20px',width:'50%'}}>
-          <ExpenseTable/>
-          </div>
-          <div style={{flex:'1',padding:'20px',width:'50%'}}>
-          <SavingsTable/>
-          </div>
-            {/* <ExpenseTable/>
-          <SavingsTable/> */}
-          
-        </div>
+        <div class="row" style={{margin:'100px'}}>
+          <div class="col-sm">
+       <ExpenseTable/>
+       </div>
+       <div class="col-sm">
+       <SavingsTable/>
+       </div>
+       </div>
         <Footer />
       </div>
     </React.Fragment>

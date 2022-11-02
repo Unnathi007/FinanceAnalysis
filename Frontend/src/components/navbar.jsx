@@ -7,6 +7,7 @@ import ProfileMoadal from './profileModal';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 export default function NavBar(){
   const [show, setShow] = useState(false);
@@ -21,20 +22,18 @@ export default function NavBar(){
         <img src={icon} alt="Logo" width="30" height="24" class="d-inline-block align-text-top" />
       
     </a>
-    <a class="navbar-brand" href="#">ExpenseAnalysis</a>
+    <Link class="navbar-brand" to="/">ExpenseAnalysis</Link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <Link class="nav-link active" aria-current="page" to="/user">Home</Link>
         </li>
+        
         <li class="nav-item">
-          <a class="nav-link" href="#">Data</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Analysis</a>
+          <Link class="nav-link" to="/analysis">Analysis</Link>
         </li>
         
       </ul>
