@@ -25,7 +25,7 @@ const sessions = sequelize.define(
           msg: `UserID must be unique and is 5 to 10 characters`,
         },
         notNull: { args: true, msg: `userID cannot be empty` },
-      }//,
+      }, //,
       // references: {
       //   model: "users_profiles", //  refers to table name
       //   key: "user_id", // 'id' refers to column name in fathers table
@@ -44,9 +44,9 @@ const sessions = sequelize.define(
 )
 
 module.exports = sessions
-sequelize.sync().then(() => {
-  console.log('Book table created successfully!');
-}).catch((error) => {
-  console.error('Unable to create table : ', error.message);
-});
 
+// sequelize.sync().then(() => {
+//   console.log('Book table created successfully!');
+// }).catch((error) => {
+//   console.error('Unable to create table : ', error.message);
+// });
