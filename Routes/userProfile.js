@@ -51,6 +51,7 @@ app.post('/login',(req,res)=>{
     console.log("Login errorr : ",err.message)
    })
    if(password==req.passHash){
+    req.session.user_id=req.body.user_id;
     res.status(200).send("Login Successful");
     // res.status(200).send('/home');
     // res.cookie(process.env.COOKIE_SESSIONID, sessionId, {
