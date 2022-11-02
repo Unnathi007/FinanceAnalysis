@@ -12,7 +12,7 @@ const validateEmail = (email) => {
 }
 
 
-const ExpenseTable = () => {
+const SavingsTable = () => {
 
   const [user, setUser] = useState([]);
   const [iserror, setIserror] = useState(false);
@@ -148,10 +148,10 @@ const ExpenseTable = () => {
 
   return (
     <div className="app">
-      <h1>Expense Table</h1> <br /><br />
+      <h1>Savings</h1> <br /><br />
 
       <MaterialTable
-        title="Expenses"
+        title="Savings"
         columns={columns}
         data={user}
         options={{
@@ -190,4 +190,4 @@ const ExpenseTable = () => {
   );
 }
 
-export default ExpenseTable;
+export default SavingsTable;
