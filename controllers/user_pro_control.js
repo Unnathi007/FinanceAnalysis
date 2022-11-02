@@ -11,6 +11,7 @@ var activity = async (user) => {
     signup_timestamp :user.signup_timestamp
   })
 }
+
 const user={
     user_id:"abhigna",
     email:"abhi@gmail.com",

@@ -1,7 +1,6 @@
 const sequelize = require("../utils/db_connection")
 const credentials = require("./../models/credentials")
 
-
 // Retreive PassHash using user_id
 
 const cred_check = async (user) => {
@@ -12,12 +11,11 @@ const cred_check = async (user) => {
   })
 }
 
-
 /*********************** */
 
 // Insert record user_id, PassHash
 
-const cred_insert = (user, pass) => {
+const cred_insert = async (user, pass) => {
   //console.log(user, pass)
   return credentials.create({
     user_id: user,
@@ -29,13 +27,12 @@ const cred_insert = (user, pass) => {
 
 // Delete record using user_id
 
-const cred_delete = (user) => {
+const cred_delete = async (user) => {
   return credentials.destroy({
     where: {
       user_id: user,
     },
   })
-
 }
 
 /****************************** */
