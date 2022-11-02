@@ -1,5 +1,6 @@
-const sequelize = require("../utils/db_connection")
-const sessions = require("./../models/sessions")
+// const sequelize = require("../utils/db_connection")
+
+const sessions = require("../models/sessions")
 
 const add_session = async (session) => {
   return sessions.create({
@@ -9,17 +10,12 @@ const add_session = async (session) => {
   })
 }
 
-const session = {
-  user_id: "abhigna",
-  session_id: "asdfghjk9876tfvbh",
-  session_timestamp: "2022-10-25 19:10:25-07",
+const ret_session = async (session) => {
+  return credentials.findAll({
+    where: {
+      session_id: session.session_id,
+    },
+  })
 }
-addSession(session)
-  .then((res) => {
-    console.log(JSON.stringify(res))
-  })
-  .catch((err) => {
-    console.log("hi " + err.message)
-  })
-console.log(db.sessions.rawAttributes)
-sequelize.sync()
+
+module.exports = { add_session, ret_session }

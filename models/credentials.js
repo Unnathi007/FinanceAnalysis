@@ -23,4 +23,11 @@ const credentials = sequelize.define(
 
 module.exports = credentials
 
-sequelize.sync()
+sequelize
+  .sync()
+  .then(() => {
+    console.log("Book table created successfully!")
+  })
+  .catch((error) => {
+    console.error("Unable to create table : ", error.message)
+  })

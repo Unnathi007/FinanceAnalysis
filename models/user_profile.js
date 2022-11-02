@@ -4,7 +4,7 @@ const sequelize = require("../utils/db_connection")
 
 const user_profile = sequelize.define(
 
-  "users_profile",
+  "users_profiles",
 
   {
     user_id: {
@@ -57,5 +57,15 @@ const user_profile = sequelize.define(
 )
 
 module.exports = user_profile
-
-sequelize.sync()
+// sequelize.sync()
+// const main = async () => {
+//   try {
+//     await sequelize.sync(
+//     );
+//     process.exit(0); // exit code 0 is normal
+//   } catch (err) {
+//     // this will show the error
+//     console.log('There was an error!', err.message);
+//   }
+// }node user_a
+// main();

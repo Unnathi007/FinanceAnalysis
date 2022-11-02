@@ -1,20 +1,17 @@
 // const {db}=require('../utils/associations');
+// const sequelize = require("../utils/db_connection")
 
-const sequelize = require("../utils/db_connection")
-const { sessions } = require("../models/sessions")
+const user_activity = require("../models/user_activity")
 
-var activity = async (user) => {
-  return sessions.findAll({
-    where: {
-      user_id: `${user}`,
-    },
+const activity_add = async (activity) => {
+  return user_activity.create({
+    index: activity.id,
+    session_id: activity.session_id,
+    TxnType: activity.TxnType,
+    Category: activity.Category,
+    Amount: activity.Amount,
+    session_timestamp: activity.session_timestamp,
   })
 }
-activity("sdfgh")
-  .then(() => {
-    console.log(JSON.stringify(res))
-  })
-  .catch((err) => {
-    console.log("hi " + err.message)
-  })
-// sequelize.sync()
+
+module.exports = { activity_add }
