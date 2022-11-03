@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../assets/styles/login.css";
 
 import {
@@ -15,9 +15,58 @@ import { GoogleLoginButton } from "react-social-login-buttons";
 import img from "../assets/images/img2.jpg";
 import NavBar from "./navbar";
 import Footer from "./footer";
+import axios from "axios";
 
 function LoginPage() {
   let navigate = useNavigate();
+
+  const validateEmail = (email) => {
+    const re = /^((?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  const handleLogin = (username,password) => {
+    
+    let errorList = []
+    if (username === "" || validateEmail(username) === false) {
+      errorList.push("Try Again, You didn't enter the email field")
+    }
+    if (password === "") {
+      errorList.push("Try Again, You didn't enter the password field")
+    }
+
+    if (errorList.length < 1) {
+      axios.post(`https://jsonplaceholder.typicode.com/users`, {
+        email: username,
+        password : password,
+      })
+        .then(response => {
+          sessionStorage.setItem("username",username);
+          console.log("success");
+          // let newUserdata = [...user];
+          // newUserdata.push(newData);
+          // setUser(newUserdata);
+          // resolve()
+          // setErrorMessages([])
+          // setIserror(false)
+        })
+        .catch(error => {
+          // setErrorMessages(["Cannot add data. Server error!"])
+          // setIserror(true)
+          // resolve()
+        })
+    } else {
+      // setErrorMessages(errorList)
+      // setIserror(true)
+      // resolve()
+    }
+  }
+  useEffect(()=>{
+    
+
+  },[])
+
+
   return (
     <>
       <NavBar />
@@ -49,7 +98,7 @@ function LoginPage() {
                   </FormGroup>
                   <Button
                     onClick={() => {
-                      navigate("/user");
+                      handleLogin("abhigna@gmail.com","123456")
                     }}
                     className="mt-3  btn"
                   >
@@ -70,8 +119,8 @@ function LoginPage() {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 }

@@ -81,14 +81,14 @@ const App = () => {
   // ]  
 
   useEffect(() => {
-    // axios.get(`https://jsonplaceholder.typicode.com/users`)
-    //   .then(res => {
-    //     const users = res.data;
-    //     setUser(users);
-    //     // console.log(users);
-    //   })
+    axios.get(`http://localhost:9090/`)
+      .then(res => {
+        const users = res.data;
+        setUser(users);
+        console.log(users);
+      })
     calculateTotalIncome();
-  }, [user])
+  }, [])
 
 
 
