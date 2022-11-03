@@ -1,5 +1,5 @@
 const {addSession,getSessions} =require( "./controllers/session_control");
-const {addActivity,findActivities} =require( "./controllers/userActivity_control");
+const {addActivity,findActivities,getRecord,updateRecord,deleteRecord} =require( "./controllers/userActivity_control");
 const {createUser} =require( "./controllers/userProfile_control");
 const {credUserAdd,cred_check} =require( "./controllers/cred_control");
 const express=require('express');
@@ -130,7 +130,56 @@ app.get("/home", (req, res) => {
     res.sendStatus(502);
    })
    console.log(JSON.stringify(activities));
-   res.status(200).json(activities);//JSON.stringify(activities));
+   res.status(200).send(activities);//JSON.stringify(activities));
+});
+app.put("/updateRecord", (req, res) => {
+  let id = req.query.id;
+  let record;
+  let updated={
+    Amount:req.body.Amount,
+    TxnType:req.body.TxnType
+  }
+  getRecord(id)
+    .then((result) => {
+      console.log(" Record : ", result);
+      record = result;
+      updateRecord(updated, record)
+        .then((res) => {
+          console.log("updated Activity : ", JSON.stringify(res));
+          record=res;
+        })
+        .catch((err) => {
+          console.log("updateActivity error : " + err.message);
+          res.sendStatus(502);
+        });
+    })
+    .catch((err) => {
+      console.log("Error : ", err);
+      res.sendStatus(502);
+    });
+    console.log(record);
+    res.status(200).json(record)
+});
+app.delete("/deleteRecord", (req, res) => {
+  let id = req.query.id;
+  let record;
+  getRecord(id)
+    .then((result) => {
+      console.log(" Record : ", result);
+      record = result;
+      deleteRecord(record)
+        .then((res) => {
+          console.log("Delete Activity : ", JSON.stringify(res));
+        })
+        .catch((err) => {
+          console.log("DeleteActivity error : " + err.message);
+        });
+    })
+    .catch((err) => {
+      console.log("Error : ", err);
+    });
+    console.log("Deleted Record : ",record,res);
+    res.sendStatus(200).send("Deleted Record : ",res);
 });
 app.listen(Port,()=>{
     console.log("Server is running on Port : ",Port);
