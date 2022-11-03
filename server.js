@@ -139,6 +139,7 @@ app.put("/updateRecord", (req, res) => {
     Amount:req.body.Amount,
     TxnType:req.body.TxnType
   }
+  let value;
   getRecord(id)
     .then((result) => {
       console.log(" Record : ", result);
@@ -157,8 +158,8 @@ app.put("/updateRecord", (req, res) => {
       console.log("Error : ", err);
       res.sendStatus(502);
     });
-    console.log(record);
-    res.status(200).json(record)
+    //console.log(res.body);
+    res.status(200).send(record);
 });
 app.delete("/deleteRecord", (req, res) => {
   let id = req.query.id;
