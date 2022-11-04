@@ -27,133 +27,176 @@ const validateEmail = (email) => {
   return re.test(String(email).toLowerCase());
 };
 
+
+
+
 const App = () => {
   const [user, setUser] = useState([]);
   const [iserror, setIserror] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
   const [TotalExpenses, setTotalExpenses] = useState(0);
-
+  const [addedRow,setIsRowAdded]=useState(false);
+  const [updatedRow,setIsRowUpdated]=useState(false);
+  const [deleteRow,setIsRowDeleted]=useState(false);
   let columns = [
-    { title: "Id", field: "name" },
-    { title: "Category", field: "username" },
-    { title: "Amount Spent", field: "email" },
+    { title: "Id", field: "index" },
+    { title: "Category", field: "TxnType" },
+    { title: "Amount Spent", field: "Amount" },
   ];
 
   const calculateTotalExpenses = () => {
     let value = 0;
     user.forEach((singleUser) => {
-      value = value + parseInt(singleUser.email);
+      value = value + parseInt(singleUser.Amount);
     });
+    console.log("efdac",TotalExpenses);
     setTotalExpenses(value);
   };
   // let data = [
   //   { name: 'manish', username: 'traptrick', email: 'themk85@gmail.com', phone: '9999999999', website: 'https://github.com/traptrick' }
   // ]
-
-  useEffect(() => {
-    axios.get(`http://localhost:9090/`).then((res) => {
+  const getData=async()=>{
+    //console.log("hitt")
+    const user_id = sessionStorage.getItem("username")
+    await axios.get(`http://localhost:9090/home?user_id=${user_id}`).then((res) => {
       const users = res.data;
-      setUser(users);
-      console.log("hiii");
+      let expenseRecords = users.filter((a) => {
+        return a.Category === 'Expense';
+      })
+      setUser(expenseRecords);
+      console.log(expenseRecords);
+      //console.log("hiii",res.data);
     });
-    calculateTotalExpenses();
+  }
+  useEffect(() => {
+    // handleRowAdd();
+    getData();
   }, []);
 
+  useEffect(()=>{
+    //console.log("asdff")
+    getData()
+    calculateTotalExpenses();
+  },[addedRow,updatedRow,deleteRow])
+
+  useEffect(()=>{
+    calculateTotalExpenses();
+  })
+  // useEffect(()=>{
+  //   //console.log("asdff")
+  //   getData()
+  // },[updatedRow])
+
+  // useEffect(()=>{
+  //   getData()
+  // },[deleteRow])
+
   //function for updating the existing row details
-  const handleRowUpdate = (newData, oldData, resolve) => {
-    //validating the data inputs
+  const handleRowDelete = async(oldData, resolve) => {
+    
+    
+      const res=await axios.delete(`http://localhost:9090/deleteRecord?id=${oldData.index}`);
+      if(res.status==201 || res.status==200)
+      {
+        setIsRowDeleted(true);
+        resolve();
+        setErrorMessages([]);
+        setIserror(false);
+      }
+      else{
+        console.log("success12");
+        setErrorMessages(["Cannot add data. Server error!"]);
+        setIserror(true);
+        resolve();
+      }
+    
+  };
+
+  const handleRowUpdate = async(newData, oldData, resolve) => {
+    console.log(newData,"kkkk-",oldData);
+
+    let txntype = (newData.TxnType==="" || newData.TxnType===oldData.TxnType)? oldData.TxnType:newData.TxnType;
+    let amount = (newData.Amount==="" || newData.Amount===oldData.Amount)? oldData.Amount:newData.Amount;
+    
+    const newRecord={
+      "TxnType": txntype,
+      "Amount": amount
+  }
     let errorList = [];
-    if (newData.name === "") {
+    if (newData.TxnType === "") {
       errorList.push("Try Again, You didn't enter the name field");
     }
-    if (newData.username === "") {
+    if (newData.Amount === "") {
       errorList.push("Try Again, You didn't enter the Username field");
-    }
-    if (newData.email === "" || validateEmail(newData.email) === false) {
-      errorList.push("Oops!!! Please enter a valid email");
     }
 
     if (errorList.length < 1) {
-      axios
-        .put(
-          `https://jsonplaceholder.typicode.com/users/${newData.name}`,
-          newData
-        )
-        .then((response) => {
-          const updateUser = [...user];
-          const index = oldData.tableData.id;
-          updateUser[index] = newData;
-          setUser([...updateUser]);
-          resolve();
-          setIserror(false);
-          setErrorMessages([]);
-        })
-        .catch((error) => {
-          setErrorMessages(["Update failed! Server error"]);
-          setIserror(true);
-          resolve();
-        });
+      console.log("koo")
+      const res=await axios.put(`http://localhost:9090/updateRecord?id=${oldData.index}`, newRecord);
+      if(res.status==201 || res.status==200)
+      {
+        console.log("success");
+        setIsRowUpdated(true);
+        resolve();
+        setErrorMessages([]);
+        setIserror(false);
+
+      }
+      else{
+        console.log("success12");
+        setErrorMessages(["Cannot add data. Server error!"]);
+        setIserror(true);
+        resolve();
+      }
     } else {
       setErrorMessages(errorList);
       setIserror(true);
       resolve();
     }
-  };
-
-  //function for deleting a row
-  const handleRowDelete = (oldData, resolve) => {
-    axios
-      .delete(`https://jsonplaceholder.typicode.com/users/${oldData.id}`)
-      .then((response) => {
-        const dataDelete = [...user];
-        const index = oldData.tableData.id;
-        dataDelete.splice(index, 1);
-        setUser([...dataDelete]);
-        resolve();
-      })
-      .catch((error) => {
-        setErrorMessages(["Delete failed! Server error"]);
-        setIserror(true);
-        resolve();
-      });
+    
   };
 
   //function for adding a new row to the table
-  const handleRowAdd = (newData, resolve) => {
-    //validating the data inputs
+  const handleRowAdd = async(newData, resolve) => {
+    
+    const newRecord={
+      "TxnType": newData.TxnType,
+      "Category": "Expense",
+      "Amount": newData.Amount,
+      "user_id":sessionStorage.getItem("username")
+  }
     let errorList = [];
-    if (newData.name === "") {
+    if (newData.TxnType === "") {
       errorList.push("Try Again, You didn't enter the name field");
     }
-    if (newData.username === "") {
+    if (newData.Amount === "") {
       errorList.push("Try Again, You didn't enter the Username field");
-    }
-    if (newData.email === "" || validateEmail(newData.email) === false) {
-      errorList.push("Oops!!! Please enter a valid email");
     }
 
     if (errorList.length < 1) {
-      axios
-        .post(`https://jsonplaceholder.typicode.com/users`, newData)
-        .then((response) => {
-          let newUserdata = [...user];
-          newUserdata.push(newData);
-          setUser(newUserdata);
-          resolve();
-          setErrorMessages([]);
-          setIserror(false);
-        })
-        .catch((error) => {
-          setErrorMessages(["Cannot add data. Server error!"]);
-          setIserror(true);
-          resolve();
-        });
+      const res=await axios.post("http://localhost:9090/addActivity", newRecord);
+      if(res.status==201 || res.status==200)
+      {
+        setIsRowAdded(true);
+        resolve();
+        setErrorMessages([]);
+        setIserror(false);
+
+      }
+      else{
+        setErrorMessages(["Cannot add data. Server error!"]);
+        setIserror(true);
+        resolve();
+      }
     } else {
       setErrorMessages(errorList);
       setIserror(true);
       resolve();
     }
   };
+
+
+
   const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),

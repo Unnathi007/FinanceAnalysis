@@ -1,19 +1,13 @@
 import React, { useState } from "react";
-import Paper from "@mui/material/Paper";
-import {
-  ArgumentAxis,
-  ValueAxis,
-  Chart,
-  LineSeries,
-} from "@devexpress/dx-react-chart-material-ui";
+import { Chart, Series } from 'devextreme-react/chart';
 import PieChart, {
   Legend,
   Export,
   Size,
-  Series,
   Label,
   Font,
   Connector,
+  
 } from "devextreme-react/pie-chart";
 import NavBar from "./navbar";
 import Footer from "./footer";
@@ -21,18 +15,30 @@ import "../assets/styles/analysis.css";
 import { useEffect } from "react";
 import axios from "axios";
 
-const Analysis = () => {
+const Analysis = (props) => {
   const [user, setUser] = useState([]);
   const pointClickHandler = (e) => {
     toggleVisibility(e.target);
   };
 
-  useEffect(() => {
-    axios.get(`http://localhost:9090/`).then((res) => {
-      const users = res.data;
+  const getData=async()=>{
+    const user_id = sessionStorage.getItem("username")
+    await axios.get(`http://localhost:9090/home?user_id=${user_id}`).then((res) => {
+      const response = res.data;
+      const users = response.filter((a)=>{
+        return a.Category === "Expense";
+      })
+      // console.log(output,"op")
       setUser(users);
+      console.log(user);
       console.log("hiii",sessionStorage.getItem("username"));
     });
+  }
+  // getData()
+
+
+  useEffect(() => {
+    getData();
   }, []);
 
   const legendClickHandler = (e) => {
@@ -48,18 +54,32 @@ const Analysis = () => {
   return (
     <React.Fragment>
       <NavBar />
+      {console.log(props.user)}
       <div class="row">
-        <div class="col-sm lineChart ">
-          <Paper class="cardClass">
-            <Chart data={user}>
+        <div class="col-sm lineChart card">
+        <Chart id="chart" dataSource={user}>
+        <Series
+          valueField="Amount"
+          argumentField="TxnType"
+          name="expense categories"
+          type="bar"
+          color="#ffaa66" />
+      </Chart>
+            {/* <Chart data={user} height={400} width={400} title="Category vs expenses">
+            <Margin
+                    top={20}
+                    bottom={20}
+                    left={100}
+                    right={0}
+                />
               <ArgumentAxis />
               <ValueAxis />
 
-              <LineSeries valueField="username" argumentField="email" />
-            </Chart>
-          </Paper>
+              <LineSeries valueField="email" argumentField="username" />
+            </Chart> */}
+          
         </div>
-        <div class="col-sm pieChart ">
+        <div class="col-sm pieChart card">
           <PieChart
             id="pie"
             dataSource={user}
@@ -68,7 +88,7 @@ const Analysis = () => {
             onPointClick={pointClickHandler}
             onLegendClick={legendClickHandler}
           >
-            <Series argumentField="username" valueField="email">
+            <Series argumentField="TxnType" valueField="Amount">
               <Label visible={true}>
                 <Connector visible={true} width={1} />
               </Label>
@@ -80,38 +100,7 @@ const Analysis = () => {
         </div>
       </div>
 
-      {/* <Paper class="cardClass">
-    <Chart
-      data={user}
-    >
-      <ArgumentAxis />
-      <ValueAxis />
-
-      <LineSeries valueField="username" argumentField="email" />
-    </Chart>
-  </Paper> */}
-      {/* <div class="cardClass">
-  <PieChart
-        id="pie"
-        dataSource={user}
-        palette="Bright"
-        title="Area of Countries"
-        onPointClick={pointClickHandler}
-        onLegendClick={legendClickHandler}
-      >
-        <Series
-          argumentField="username"
-          valueField="email"
-        >
-          <Label visible={true}>
-            <Connector visible={true} width={1} />
-          </Label>
-        </Series>
-
-        <Size width={500} />
-        <Export enabled={true} />
-      </PieChart>
-  </div> */}
+      
       <Footer />
     </React.Fragment>
   );

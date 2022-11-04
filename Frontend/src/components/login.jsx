@@ -16,60 +16,59 @@ import img from "../assets/images/img2.jpg";
 import NavBar from "./navbar";
 import Footer from "./footer";
 import axios from "axios";
+import { useState } from "react";
 
 function LoginPage() {
   let navigate = useNavigate();
+  const [iserror, setIserror] = useState(false);
+  const [userName,setUserName]=useState("");
+  const [passWord,setPassWord]=useState("");
+
+  const [errorMessages, setErrorMessages] = useState([]);
 
   const validateEmail = (email) => {
-    const re = /^((?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]))$/;
+    const re =
+      /^((?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]))$/;
     return re.test(String(email).toLowerCase());
-  }
+  };
 
-  const handleLogin = (username,password) => {
-    
-    let errorList = []
-    if (username === "" || validateEmail(username) === false) {
-      errorList.push("Try Again, You didn't enter the email field")
+  const handleLogin = async () => {
+    console.log(userName,passWord)
+    // const Data = {
+    //   "user_id": "abhigna",
+    //   "passHash": "sdfghjk",
+
+    // };
+    let errorList = [];
+    if (userName === "" || validateEmail(userName) === false) {
+      errorList.push("Try Again, You didn't enter the email field");
     }
-    if (password === "") {
-      errorList.push("Try Again, You didn't enter the password field")
+    if (passWord === "") {
+      errorList.push("Try Again, You didn't enter the password field");
     }
 
-    if (errorList.length < 1) {
-      axios.post(`https://jsonplaceholder.typicode.com/users`, {
-        email: username,
-        password : password,
-      })
-        .then(response => {
-          sessionStorage.setItem("username",username);
-          console.log("success");
-          // let newUserdata = [...user];
-          // newUserdata.push(newData);
-          // setUser(newUserdata);
-          // resolve()
-          // setErrorMessages([])
-          // setIserror(false)
-        })
-        .catch(error => {
-          // setErrorMessages(["Cannot add data. Server error!"])
-          // setIserror(true)
-          // resolve()
-        })
+    if (1) {
+      console.log(userName,passWord);
+      const updatedUserName = userName[5];
+      const response = await axios.post("http://localhost:9090/login", {
+        "user_id": userName,
+        "passHash":passWord,
+      });
+      console.log(response.data);
+      sessionStorage.setItem("username",userName)
+      const x = sessionStorage.getItem("username")
+      console.log(x);
+      navigate('/user')
     } else {
-      // setErrorMessages(errorList)
-      // setIserror(true)
-      // resolve()
+      console.log("Error");
+
+
     }
-  }
-  useEffect(()=>{
-    
-
-  },[])
-
+  };
+  useEffect(() => {}, []);
 
   return (
     <>
-      <NavBar />
       <div className="background">
         <div className="login-box">
           <div className="container">
@@ -88,17 +87,25 @@ function LoginPage() {
                       className="mb-3"
                       type="email"
                       placeholder="Enter your Email"
+                      id="email"
+                      onChange={e => setUserName(e.target.value)}
                     />
                     <Label className="font-weight-bold mb-2">Password</Label>
                     <Input
                       className="mb-3"
                       type="password"
                       placeholder="At least 8 characters"
+                      id="password"
+                      onChange={e => setPassWord(e.target.value)}
                     />
                   </FormGroup>
                   <Button
                     onClick={() => {
-                      handleLogin("abhigna@gmail.com","123456")
+                      // const username = document.getElementById("email").value;
+                      // const password = document.getElementById("password").value;
+                      // handleLogin(username,password);
+                      handleLogin();
+                      console.log(userName,passWord);
                     }}
                     className="mt-3  btn"
                   >

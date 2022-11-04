@@ -3,17 +3,38 @@ import icon from '../assets/images/icon.png'
 import profileUser from '../assets/images/profile-user.png'
 import "../assets/styles/navbar.css";
 import "../assets/styles/navbar.css";
-import ProfileMoadal from './profileModal';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
+import { createRoutesFromChildren, Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 export default function NavBar(){
   const [show, setShow] = useState(false);
-
+  const handleLogOut = () =>{
+    axios.get("http://localhost:9090/logout")
+    sessionStorage.clear();
+  }
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    getData();
+    setShow(true)
+  };
+  const [user, setUser] = useState([]);
+  const getData=async()=>{
+    const user_id = sessionStorage.getItem("username");
+    console.log(user_id,"ooo");
+    const paramsBody={
+      "user_id":user_id
+    }
+    console.log(paramsBody,"oooollll")
+    const resp=await axios.get(`http://localhost:9090/profile?user_id=${user_id}`)
+    console.log(resp.data,"fwea");
+    setUser(resp.data);
+  }
+  useEffect(() => {
+    getData();
+  }, []);
   
     return (
         <nav class="navbar navbar-expand-lg bg-light fixed-top">
@@ -33,7 +54,7 @@ export default function NavBar(){
         </li>
         
         <li class="nav-item">
-          <Link class="nav-link" to="/analysis">Analysis</Link>
+          <Link class="nav-link" to="/analysis" params={{users:user}}>Analysis</Link>
         </li>
         
       </ul>
@@ -45,7 +66,7 @@ export default function NavBar(){
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
             <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModalCenter" onClick={handleShow}>Profile</a></li>
-            <li><a class="dropdown-item" href="#">Logout</a></li>
+            <li><Link class="dropdown-item" to="/" onClick={handleLogOut}>Logout</Link></li>
           </ul>
         </li>
       </ul>
@@ -74,7 +95,7 @@ export default function NavBar(){
               <Form.Control
                 type="email"
                 disabled="disabled"
-                value="abhigna.vuppala@gmail.com"
+                value={user.email}
               />
             </Form.Group>
             <Form.Group
@@ -85,7 +106,7 @@ export default function NavBar(){
               <Form.Control
                 type="text"
                 disabled="disabled"
-                value="Abhigna"
+                value={user.first_name}
               />
             </Form.Group>
             <Form.Group
@@ -96,40 +117,7 @@ export default function NavBar(){
               <Form.Control
                 type="text"
                 disabled="disabled"
-                value="Vuppala"
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea5"
-            >
-              <Form.Label>Total Savings</Form.Label>
-              <Form.Control
-                type="text"
-                disabled="disabled"
-                value="2899993"
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea6"
-            >
-              <Form.Label>Total Expenses</Form.Label>
-              <Form.Control
-                type="text"
-                disabled="disabled"
-                value="17882893"
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea6"
-            >
-              <Form.Label>Mostly Sepent On</Form.Label>
-              <Form.Control
-                type="text"
-                disabled="disabled"
-                value="Food"
+                value={user.last_name}
               />
             </Form.Group>
           </Form>

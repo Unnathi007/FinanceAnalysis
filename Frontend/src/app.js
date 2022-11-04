@@ -19,6 +19,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/user" element={<UserPage />} />
             <Route path="/analysis" element={<Analysis/>}/>
+            <Route path="/logout" element={<LoginPage/>}/>
         </Routes>
         </div>
       </Router>
