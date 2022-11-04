@@ -1,0 +1,82 @@
+Third Party Libraries
+
+
+axios
+
+# Copyright (c) 2014-present Matt Zabriskie & Collaborators
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+devexpress
+
+DEVELOPER EXPRESS INC
+DEVEXPRESS .NET Controls and Frameworks
+Copyright (C) 2000-2022 Developer Express Inc. 
+Last revised June, 2022
+END-USER LICENSE AGREEMENT
+FOR ALL SOFTWARE DEVELOPMENT PRODUCT(S) INCLUDED IN THIS DISTRIBUTION
+IMPORTANT - PLEASE READ THIS END-USER LICENSE AGREEMENT (“AGREEMENT”) CAREFULLY BEFORE DOWNLOADING OR USING THE SOFTWARE DEVELOPMENT PRODUCT(S) INCLUDED IN THIS DISTRIBUTION/INSTALLATION. 
+This Developer Express Inc ("DEVEXPRESS") AGREEMENT constitutes a legally binding agreement between you or the business and/or entity which you represent ("You" or "LICENSEE") and DEVEXPRESS for all DEVEXPRESS products, frameworks, widgets, source code, demos, intermediate files, media, printed materials, and documentation ("SOFTWARE DEVELOPMENT PRODUCT(S)") included in this distribution/installation. 
+By purchasing, installing, copying, or otherwise using the SOFTWARE DEVELOPMENT PRODUCT(S), you acknowledge that you have read this AGREEMENT and you agree to be bound by its terms and conditions. If you are representing a business and/or entity, you acknowledge that you have the legal authority to bind the business and/or entity you are representing to all the terms and conditions of this AGREEMENT. 
+
+
+
+devextreme
+
+This Developer Express Inc ("DEVEXPRESS") AGREEMENT constitutes a legally binding agreement between you or the business and/or entity which you represent ("You" or "LICENSEE") and DEVEXPRESS for all DEVEXPRESS products, frameworks, widgets, source code, demos, intermediate files, media, printed materials, and documentation ("SOFTWARE DEVELOPMENT PRODUCT(S)") included in this distribution/installation.
+By purchasing, installing, copying, or otherwise using the SOFTWARE DEVELOPMENT PRODUCT(S), you acknowledge that you have read this AGREEMENT and you agree to be bound by its terms and conditions. If you are representing a business and/or entity, you acknowledge that you have the legal authority to bind the business and/or entity you are representing to all the terms and conditions of this AGREEMENT.
+
+
+material-ui
+
+The MIT License (MIT)
+
+Copyright (c) 2014 Call-Em-All
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+bootstrap
+
+
+The MIT License (MIT)
+
+Copyright (c) 2011-2022 Twitter, Inc.
+Copyright (c) 2011-2022 The Bootstrap Authors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
