@@ -34,5 +34,21 @@ const user={
 //   .catch((err) => {
 //     console.log("hi " + err.message)
 //   })
+
+
+const getUser = async (user_id) => {
+  return user_profile.findOne({
+    where:{
+      user_id:user_id
+    }
+  })
+}
+// getUser("abhigna").then((res)=>{
+//   console.log("User Profile :",res);
+// }).catch((err)=>{
+//   console.log("User Profile Error :",err);
+// })
+
+
 sequelize.sync()
-module.exports = {createUser}
+module.exports = {createUser,getUser}

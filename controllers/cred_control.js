@@ -11,16 +11,16 @@ var cred_check = async (user) => {
   })
 }
 
-// var cred = cred_check("abhigna")
+var cred = cred_check("abhigna")
 
-// cred
-//   .then((res) => {
-//     console.log("success output")
-//     console.log(JSON.stringify(res))
-//   })
-//   .catch((err) => {
-//     console.log(err.message)
-//   })
+cred
+  .then((res) => {
+    console.log("success output")
+    console.log(JSON.stringify(res))
+  })
+  .catch((err) => {
+    console.log(err.message)
+  })
 
 
 var credUserAdd = async (user) => {
@@ -33,13 +33,13 @@ const user={
       user_id:"desani",
       PassHash:"sdfghjk"
   }
-credUserAdd(user)
-    .then((res) => {
-      console.log(JSON.stringify(res))
-    })
-    .catch((err) => {
-      console.log("hi " + err.message)
-    })
+// credUserAdd(user)
+//     .then((res) => {
+//       console.log(JSON.stringify(res))
+//     })
+//     .catch((err) => {
+//       console.log("hi " + err.message)
+//     })
 sequelize.sync().then(() => {
     console.log('Book table created successfully!');
   }).catch((error) => {
